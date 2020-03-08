@@ -29,7 +29,8 @@ class Episode:
 		ffmpeg.input(src).output(output + ".mp4", vcodec="copy").run()
 
 	def download(self):
-		name = self.name.replace("/", " ")
+		regex = re.compile('[<>:"\\/|?*]')
+		name = regex.sub("_", self.name)
 		if '"' in name:
 			name = name[name.index('"') + 1:name.rindex('"')]
 		dirname = os.path.join(self.show.name, name)
@@ -40,9 +41,10 @@ class Episode:
 			"mgid": self.mgid,
 		}).text)
 		namespace = {"media": "http://search.yahoo.com/mrss/"}
+		thumbnail = root.find(".//image/url", namespace).text
 		for item in root.findall(".//item"):
 			url = item.find("media:group/media:content", namespace).get("url")
-			title = item.find("media:group/media:title", namespace).text.replace("/", " ").replace(":", " ").strip()
+			title = regex.sub("", item.find("media:group/media:title", namespace).text)
 			if '"' in title:
 				title = title[title.index('"') + 1:title.rindex('"')] + title[title.rindex('"') + 1:]
 			self._download_item(url, os.path.join(dirname, title))
