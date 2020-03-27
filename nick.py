@@ -21,15 +21,12 @@ class Episode:
         src = item["rendition"][-1]["src"]
         if "transcript" in item:
             subtitles = next(i for i in item["transcript"][0]["typographic"] if i["format"] == "ttml")
-            with open(output + ".ttml", "w", encoding="utf-8") as file:
+            with open(f"{output}.ttml", "w", encoding="utf-8") as file:
                 file.write(requests.get(subtitles["src"]).text)
-        sizes = re.findall(r"(,stream_(\d+)x(\d+)(?:_\d+)+)", src)
-        size = max(sizes, key=lambda x: int(x[2]))
-        src = re.sub(r",stream_[^/]+", size[0], src)
-        ffmpeg.input(src).output(output + ".mp4", vcodec="copy").run()
+        ffmpeg.input(src).output(f"{output}.mp4", vcodec="copy").overwrite_output().run()
 
     def download(self):
-        regex = re.compile('[<>:"\\/|?*]')
+        regex = re.compile(r'[<>:"\/|?*]')
         name = regex.sub("_", self.name)
         if '"' in name:
             name = name[name.index('"') + 1:name.rindex('"')]
