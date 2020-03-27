@@ -6,6 +6,16 @@ import xml.etree.ElementTree as ET
 
 MGID = "mgid:arc:promotion:nick.com:0cdfdb4d-ab75-45a4-9ee0-a5ec3205c248"
 
+def format_name(name, include_segment=False):
+    name = re.sub(r"[<>:\/|?*]", " ", name)
+    if '"' in name:
+        quoted = name[name.index('"') + 1:name.rindex('"')]
+        if include_segment:
+            name = quoted + name[name.rindex('"') + 1:]
+        else:
+            name = quoted
+    return " ".join(name.split())
+
 class Episode:
     def __init__(self, show, item):
         self.show = show
@@ -26,11 +36,7 @@ class Episode:
         ffmpeg.input(src).output(f"{output}.mp4", vcodec="copy").overwrite_output().run()
 
     def download(self):
-        regex = re.compile(r'[<>:"\/|?*]')
-        name = regex.sub("_", self.name)
-        if '"' in name:
-            name = name[name.index('"') + 1:name.rindex('"')]
-        dirname = os.path.join(self.show.name, name)
+        dirname = os.path.join(self.show.name, format_name(self.name))
         if not os.path.isdir(dirname):
             os.makedirs(dirname)
         root = ET.fromstring(requests.get("http://udat.mtvnservices.com/service1/dispatch.htm", params={
@@ -41,9 +47,7 @@ class Episode:
         thumbnail = root.find(".//image/url", namespace).text
         for item in root.findall(".//item"):
             url = item.find("media:group/media:content", namespace).get("url")
-            title = regex.sub("", item.find("media:group/media:title", namespace).text)
-            if '"' in title:
-                title = title[title.index('"') + 1:title.rindex('"')] + title[title.rindex('"') + 1:]
+            title = format_name(item.find("media:group/media:title", namespace).text, True)
             self._download_item(url, os.path.join(dirname, title))
 
     def __str__(self):
