@@ -1,3 +1,4 @@
+import sys
 import os
 import re
 import ffmpeg
@@ -72,7 +73,10 @@ class Show:
                 yield cls(item)
 
     def get_episodes(self):
-        items = requests.get(self.links["episode"]).json()["data"]["items"]
+        episode = self.links.get("episode")
+        if episode is None:
+            raise Exception("Currently no episode is available")
+        items = requests.get(episode).json()["data"]["items"]
         for item in items:
             yield Episode(self, item)
 
@@ -86,9 +90,14 @@ def choose(items, name):
     return items[int(input(f"Which {name}? ")) - 1]
 
 def main():
-    show = choose(Show.get_shows(MGID), "show")
-    episode = choose(show.get_episodes(), "episode")
-    episode.download()
+    try:
+        show = choose(Show.get_shows(MGID), "show")
+        episode = choose(show.get_episodes(), "episode")
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    else:
+        episode.download()
 
 if __name__ == "__main__":
     main()
