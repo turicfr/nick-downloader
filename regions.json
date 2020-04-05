@@ -1,8 +1,13 @@
 [
     {
         "name": "Arabic",
-        "lang": "AR",
+        "lang": "ar",
         "locale": "AR"
+    },
+    {
+        "name": "Arabic (Tunisia)",
+        "lang": "ar-TN",
+        "locale": "TN"
     },
     {
         "name": "Arabic (Algeria)",
@@ -18,11 +23,6 @@
         "name": "Arabic (Egypt)",
         "lang": "ar-EG",
         "locale": "EG"
-    },
-    {
-        "name": "Arabic (Jordan)",
-        "lang": "es-PA",
-        "locale": "JO"
     },
     {
         "name": "Arabic (Kuwait)",
@@ -60,19 +60,9 @@
         "locale": "YE"
     },
     {
-        "name": "Belarusian",
-        "lang": "be-BY/be",
-        "locale": "BE"
-    },
-    {
         "name": "Bulgarian (Bulgaria)",
-        "lang": "bg-BG",
+        "lang": "bg",
         "locale": "BG"
-    },
-    {
-        "name": "Chinese (Singapore)",
-        "lang": "zh-SG",
-        "locale": "SG"
     },
     {
         "name": "Croatian (Croatia)",
@@ -81,8 +71,13 @@
     },
     {
         "name": "Danish (Denmark)",
-        "lang": "da-DK",
+        "lang": "da",
         "locale": "DK"
+    },
+    {
+        "name": "Dutch (Belgium)",
+        "lang": "nl-BE",
+        "locale": "BE"
     },
     {
         "name": "Dutch (Netherlands)",
@@ -105,6 +100,11 @@
         "locale": "NZ"
     },
     {
+        "name": "English (Singapore)",
+        "lang": "en-SG",
+        "locale": "SG"
+    },
+    {
         "name": "English (United Kingdom)",
         "lang": "en-GB",
         "locale": "GB"
@@ -115,8 +115,8 @@
         "locale": "FI"
     },
     {
-        "name": "French",
-        "lang": "fr",
+        "name": "French (France)",
+        "lang": "fr-FR",
         "locale": "FR"
     },
     {
@@ -145,8 +145,8 @@
         "locale": "HU"
     },
     {
-        "name": "Indonesian (Indonesia)",
-        "lang": "id-ID/id",
+        "name": "Indonesian",
+        "lang": "id",
         "locale": "ID"
     },
     {
@@ -160,14 +160,19 @@
         "locale": "ME"
     },
     {
-        "name": "Norwegian (Norway)",
-        "lang": "nb-NO",
+        "name": "Norwegian",
+        "lang": "no",
         "locale": "NO"
     },
     {
-        "name": "Polish (Poland)",
-        "lang": "pl-PL",
+        "name": "Polish",
+        "lang": "pl",
         "locale": "PL"
+    },
+    {
+        "name": "Portuguese",
+        "lang": "pt",
+        "locale": "PT"
     },
     {
         "name": "Portuguese (Brazil)",
@@ -180,9 +185,19 @@
         "locale": "PT"
     },
     {
-        "name": "Serbian (Serbia)",
-        "lang": null,
+        "name": "Serbian",
+        "lang": "rs",
         "locale": "RS"
+    },
+    {
+        "name": "Spanish",
+        "lang": "es",
+        "locale": "ES"
+    },
+    {
+        "name": "Spanish (Argentina)",
+        "lang": "es-AR",
+        "locale": "AR"
     },
     {
         "name": "Spanish (Bolivia)",
@@ -275,18 +290,13 @@
         "locale": "VE"
     },
     {
-        "name": "Swedish (Sweden)",
-        "lang": "sv-SE",
+        "name": "Swedish",
+        "lang": "sv",
         "locale": "SE"
     },
     {
-        "name": "Tswana (South Africa)",
-        "lang": "tn-ZA",
-        "locale": "TN"
-    },
-    {
         "name": "Turkish (Turkey)",
-        "lang": "tr-TR",
+        "lang": "tr",
         "locale": "TR"
     }
 ]
