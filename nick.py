@@ -5,7 +5,7 @@ import ffmpeg
 import requests
 import xml.etree.ElementTree as ET
 
-MGID = "mgid:arc:promotion:nick.com:0cdfdb4d-ab75-45a4-9ee0-a5ec3205c248"
+MGID = "mgid:arc:promotion:nick.com:cb2080f2-b2de-450d-ba2f-8d79981b8f89"
 
 def format_name(name, include_segment=False):
     name = re.sub(r"[<>:\/|?*]", " ", name)
@@ -61,12 +61,10 @@ class Show:
 
     @classmethod
     def get_shows(cls, mgid):
-        items = requests.get(f"http://api.playplex.viacom.com/feeds/networkapp/intl/promolist/1.9/{mgid}", params={
+        items = requests.get(f"https://neutron-api.viacom.tech/feeds/networkapp/intl/promolist/2.3/{mgid}", params={
             "platform": "android",
             "brand": "nick",
-            "version": "18.21.1",
             "region": "us",
-            "key": "networkapp1.0",
         }).json()["data"]["items"]
         for item in items:
             if item["entityType"] == "series":
