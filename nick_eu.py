@@ -47,7 +47,6 @@ class Episode:
             lang=self.series.lang,
         )).text)
         namespace = {"media": "http://search.yahoo.com/mrss/"}
-        guid = root.find(".//guid", namespace).text
         for item in root.findall(".//item", namespace):
             guid = item.find("guid", namespace).text
             url = response["config"]["brightcove_mediagenRootURL"].format(

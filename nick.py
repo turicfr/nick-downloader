@@ -45,7 +45,6 @@ class Episode:
             "mgid": self.mgid,
         }).text)
         namespace = {"media": "http://search.yahoo.com/mrss/"}
-        thumbnail = root.find(".//image/url", namespace).text
         for item in root.findall(".//item"):
             url = item.find("media:group/media:content", namespace).get("url")
             title = format_name(item.find("media:group/media:title", namespace).text, True)
