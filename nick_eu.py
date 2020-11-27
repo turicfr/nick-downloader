@@ -34,7 +34,7 @@ class Episode:
         ffmpeg.input(src).output(f"{output}.mp4", vcodec="copy").overwrite_output().run()
 
     def download(self):
-        dirname = os.path.join(self.series.name, format_name(self.name))
+        dirname = os.path.join(format_name(self.series.name), format_name(self.name))
         if not os.path.isdir(dirname):
             os.makedirs(dirname)
         response = requests.get("http://media.mtvnservices.com/pmt/e1/access/", params={
